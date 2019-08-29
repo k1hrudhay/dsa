@@ -1,0 +1,46 @@
+# Python3 program to implement Queue using  
+# two stacks with costly deQueue()
+
+class Queue:
+	def __init__(self):
+		self.s1=[]
+		self.s2=[None]
+
+
+	# EnQueue an item into the queue
+	def enQueue(self,value):
+		self.s1.append(value)
+		
+
+
+	# Dequeue an item from the queue
+	def deQueue(self):
+		if len(self.s2) == 0:
+			return "Queue is empty"
+		else:
+			# Move all elements from s1 to s2  
+			self.s2=[]
+			for i in range(len(self.s1)-1,-1,-1):
+				self.s2.append(self.s1[i])
+
+			val=self.s2[len(self.s2)-1]
+			self.s2=self.s2[:len(self.s2)-1]
+			self.s1=self.s1[1:]
+			
+			return val
+
+
+
+q=Queue()
+
+q.enQueue(1)
+q.enQueue(2)
+q.enQueue(3)
+q.enQueue(4)
+q.enQueue(5)
+print(q.deQueue())
+print(q.deQueue())
+print(q.deQueue())
+print(q.deQueue())
+print(q.deQueue())
+print(q.deQueue())
